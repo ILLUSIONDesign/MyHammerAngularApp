@@ -1,1 +1,57 @@
-/* You can add global styles to this file, and also import other style files */
+
+
+@import './style/var';
+
+.container {
+    display: block;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.carousel {
+    margin-bottom: 1.5rem;
+
+    &-inner {
+        max-height: 350px;
+    }
+
+    &-item {
+        background: $secondary;
+        overflow: hidden;
+        position: relative;
+        
+        &::before {
+            content: "";
+            display: block;
+            padding-bottom: 70%;
+        }
+
+        .item {
+            height: 100%;
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            width: 100%;
+        }
+
+        img {
+            height: 100%;
+            left: -9999px;
+            margin: auto;
+            font-family: "object-fit:contain;object-position:50% 50%";
+            object-fit: contain;
+            object-position: 50% 50%;
+            position: absolute;
+            right: -9999px;
+            top: 0;
+            width: 100%;
+        }
+    }
+}

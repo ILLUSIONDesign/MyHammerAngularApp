@@ -1,0 +1,48 @@
+<div class="panel-list-inner col-sm-5">
+  <span>{{errorMsg}}</span>
+  <ul class="list-items">
+    <ng-container *ngFor="let job of jobs, let lastJob = last">
+      <li class="list-item p-3"
+        *ngIf="job?.state === 'active'"
+        [class.selected]="job === selectedJob"
+        (click)="onSelect(job)">
+          <div class="card">
+            <h3 class="card-title text-truncate mt-0">
+                <span class="card-state card-state--active" *ngIf="job?.state === 'active'" tooltip="Auftrag aktiv"></span>
+                <span class="card-state card-state--inactive" *ngIf="job?.state !== 'active'" tooltip="Auftrag inaktiv"></span>
+                {{job?.title}}
+              </h3>
+            <img class="card-img-top col-lg-6 col-sm-12 img-thumbnail" src="http:{{job?.thumbnail}}" alt="Job thumbnail image">
+            <div class="card-body col-lg-6 col-sm-12">
+              <p class="card-text d-none d-sm-block">{{job?.description | slice:0:35}}</p>
+              <div class="card-list">
+                <i class="fa fa-edit"></i> <span>{{job?.created_at | date:'MM.dd.yyyy'}}</span><br>
+                <i class="fa fa-hourglass-end"></i> <span>{{job?.end_date | date:'MM.dd.yyyy'}}</span><br>
+                <i class="fa fa-map-marker-alt"></i> <span>{{job?.zip_code}} </span><span>{{job?.city}}</span><br><br>
+                <i class="fa fa-lock is-awarded" *ngIf="job?.is_awarded === true" tooltip="Auftrag bereits vergeben"></i>
+                <i class="fa fa-lock-open is-not-awarded" *ngIf="job?.is_awarded === false" tooltip="Auftrag noch offen"></i>
+                <span>Auftragsstatus</span>
+              </div>
+            </div>
+          </div>
+        <span class="list-item__divider" *ngIf="!lastJob"></span>
+      </li>
+
+      <!-- <ngx-image-zoom
+        [thumbImage]="job.thumbnail"
+        [fullImage]="job.thumbnail"
+        [zoomMode]="'hover'"
+      ></ngx-image-zoom> -->
+
+    </ng-container>
+  </ul>
+</div>
+<div class="col-sm-7 panel-details-wrapper">
+  <app-panel-details *ngIf="selectedJob; else noSelectedJobContent" [selectedJob]="selectedJob"></app-panel-details>
+  <ng-template #noSelectedJobContent>
+    <div class="my-3">
+      <p class="d-none d-sm-block" style="line-height: 1.2;">Bitte einen Auftrag in der linken Spalte auswählen...</p>
+      <p class="d-block d-sm-none" style="line-height: 1.2;">Bitte einen Auftrag auswählen...</p>
+    </div>
+  </ng-template>
+</div>

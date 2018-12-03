@@ -1,0 +1,12 @@
+@import '../../../style/var';
+
+.headerTitle {
+    font-size: 1.75rem;
+    margin-left: 1rem;
+
+    @include media-breakpoint-down(sm) {
+        font-size: 1.25rem;
+        margin: 0;
+        text-align: center;
+    }
+}

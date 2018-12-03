@@ -1,0 +1,18 @@
+@import '../../style/var';
+
+@include media-breakpoint-down(sm) {
+    header {
+        margin: .75rem 0 !important;
+    }
+
+    main {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@include media-breakpoint-down(xs) {
+    .panel-list {
+        margin: 0;
+    }
+}

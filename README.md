@@ -1,5 +1,13 @@
 # MyHammerApp
 
+## Description
+
+* Creating a responsive two-panel job overview page.
+* Inside of the first panel, list of all the “active” jobs will be loaded from a JSON file with an HTTP-Request.
+* By clicking on a job item from the list, detailed information of the selected job will be shown on the second panel.
+* The Single Page Application uses Bootstrap 4 and is responsive.
+* The Testing is outstanding.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
 
 ## Development server

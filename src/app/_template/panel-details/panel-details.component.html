@@ -1,0 +1,60 @@
+<div class="panel-details my-3">
+  <div class="card">
+    <img class="card-img-top img-thumbnail" src="http:{{selectedJob?.thumbnail}}" alt="Job thumbnail image">
+    <h3 class="card-title mt-0">{{selectedJob?.title}}</h3>
+    <span class="card-badge">
+      <i class="fa fa-lock is-awarded" 
+        *ngIf="selectedJob?.is_awarded === true" 
+        tooltip="Auftrag bereits vergeben">
+      </i>
+      <i class="fa fa-lock-open is-not-awarded" 
+        *ngIf="selectedJob?.is_awarded === false"
+        tooltip="Auftrag noch offen">
+      </i>
+    </span>
+    <div class="card-body col-sm-12 px-0">
+      <dl class="row">
+        <dt class="col-lg-4 col-md-6 col-sm-12">Eingestellt am:</dt>
+        <dd class="col-lg-8 col-md-6 col-sm-12">{{selectedJob?.created_at | date:'MM.dd.yyyy'}}</dd>
+      
+        <dt class="col-lg-4 col-md-6 col-sm-12">Fertigstellung bis:</dt>
+        <dd class="col-lg-8 col-md-6 col-sm-12">{{selectedJob?.end_date | date:'MM.dd.yyyy'}}</dd>
+      
+        <dt class="col-lg-4 col-md-6 col-sm-12">Ausführungsort:</dt>
+        <dd class="col-lg-8 col-md-6 col-sm-12">{{selectedJob?.zip_code}} {{selectedJob?.city}}</dd>
+      </dl>
+      <p class="card-text">"{{selectedJob?.description}}"</p>
+      <carousel [interval]="-1" *ngIf="selectedJob?.attachments?.length">
+        <p class="card-text"><strong>Auftragsbilder:</strong></p>
+        <slide *ngFor="let imageUrl of selectedJob?.attachments">
+          <img src="{{imageUrl}}" alt="first slide" style="display: block; width: 100%;">
+        </slide>
+      </carousel>
+      <p class="card-text"><strong>Mitteilungen:</strong></p>
+      <div class="card-list">
+        <i class="fa fa-envelope"></i>
+        <span class="card-list-item">{{selectedJob?.counter.messages_total}}</span>
+        <span class="card-list-item" *ngIf="selectedJob?.counter.messages_total !== 1">Nachrichten insgesamt</span>
+        <span class="card-list-item" *ngIf="selectedJob?.counter.messages_total === 1">Nachricht insgesamt</span><br>
+        <i class="fa fa-envelope-open-text"></i>
+        <span class="card-list-item">{{selectedJob?.counter.messages_unread}}</span>
+        <span class="card-list-item" *ngIf="selectedJob?.counter.messages_unread !== 1">ungelesene Nachrichten</span>
+        <span class="card-list-item" *ngIf="selectedJob?.counter.messages_unread === 1">ungelesene Nachricht</span>
+      </div>
+    </div>
+
+    <!-- <div class="gallery" style="display: flex">
+      <ngx-image-zoom *ngFor="let imageUrl of selectedJob?.attachments" 
+        [thumbImage]="imageUrl"
+        [fullImage]="imageUrl"
+        [zoomMode]="'click'"
+        [maxZoomRatio]="3"
+        [enableScrollZoom]="true"
+      ></ngx-image-zoom>
+    </div> -->
+
+  </div>
+
+  <span class="card-info py-3 px-4">Auftrags-ID: {{selectedJob?.id}}</span>
+  
+</div>
